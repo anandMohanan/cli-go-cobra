@@ -15,8 +15,18 @@ limitations under the License.
 */
 package main
 
-import "joke/cmd"
+import (
+	"fmt"
+	"joke/cmd"
+	"net/http"
+)
 
 func main() {
 	cmd.Execute()
+	add := "http://api.adviceslip.com/advice/search/"
+	response, err := http.Get(add)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(response.Body)
 }
